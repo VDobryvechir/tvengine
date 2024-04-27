@@ -1,0 +1,26 @@
+   {
+       "name":  "PRESENTATION_ALL",
+       "url": "/api/v1/presentation",
+       "method": "GET",
+       "result": "{{RESULT}}"  
+   },
+   {
+       "name":  "PRESENTATION_CREATE",
+       "url": "/api/v1/presentation",
+       "method": "POST",
+       "result": "{{RESULT}}"  
+   },
+   {
+       "name":  "PRESENTATION_UPDATE",
+       "url": "/api/v1/presentation",
+       "method": "PUT",
+       "result": "{{RESULT}}"  
+   },
+   {
+       "name":  "PRESENTATION_DELETE",
+       "url": "/api/v1/presentation/{ids}",
+       "method": "DELETE",
+       "result": "{{RESULT}}"  
+   },
+
+                               

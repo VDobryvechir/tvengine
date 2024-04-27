@@ -1,0 +1,24 @@
+   {
+       "name":  "SCREEN_ALL",
+       "url": "/api/v1/screen",
+       "method": "GET",
+       "result": "{{RESULT}}"  
+   },
+   {
+       "name":  "SCREEN_CREATE",
+       "url": "/api/v1/screen",
+       "method": "POST",
+       "result": "{{RESULT}}"  
+   },
+   {
+       "name":  "SCREEN_UPDATE",
+       "url": "/api/v1/screen",
+       "method": "PUT",
+       "result": "{{RESULT}}"  
+   },
+   {
+       "name":  "SCREEN_DELETE",
+       "url": "/api/v1/screen/{ids}",
+       "method": "DELETE",
+       "result": "{{RESULT}}"  
+   },

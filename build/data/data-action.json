@@ -1,0 +1,6 @@
+#include "./control/control-action.json"
+#include "./group/group-action.json"
+#include "./picture/picture-action.json"
+#include "./presentation/presentation-action.json"
+#include "./screen/screen-action.json"
+#include "./video/video-action.json"

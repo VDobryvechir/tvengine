@@ -1,0 +1,24 @@
+   {
+       "name":  "GROUP_ALL",
+       "url": "/api/v1/group/{parent}",
+       "method": "GET",
+       "result": "{{RESULT}}"  
+   },
+   {
+       "name":  "GROUP_CREATE",
+       "url": "/api/v1/group/{parent}",
+       "method": "POST",
+       "result": "{{RESULT}}"  
+   },
+   {
+       "name":  "GROUP_UPDATE",
+       "url": "/api/v1/group/{id}",
+       "method": "PUT",
+       "result": "{{RESULT}}"  
+   },
+   {
+       "name":  "GROUP_DELETE",
+       "url": "/api/v1/group/{id}",
+       "method": "DELETE",
+       "result": "{{RESULT}}"  
+   },

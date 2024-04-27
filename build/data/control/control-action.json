@@ -1,0 +1,6 @@
+   {
+       "name":  "CONTROL_ON",
+       "url": "/api/v1/control",
+       "method": "POST",
+       "result": "{{RESULT}}"  
+   },

@@ -1,0 +1,45 @@
+   {
+       "name":  "READ_ALL_VARIABLES",
+       "type": "single",
+       "url": "/debug/all_variables",
+       "method": "GET",
+       "params": "debug:{\"action\":\"ALL_VARIABLES\"}",
+       "query": {"key":"string"},
+       "result": "{{DEBUG_ALL_VARIABLES}}"  
+   },                                                       
+   {
+       "name":  "GET_ONE_VARIABLES",
+       "type": "single",
+       "url": "/debug/one_variable",
+       "method": "GET",
+       "params": "debug:{\"action\":\"GET_ONE_VARIABLE\"}",
+       "query": {"key":"string","name":"string"},
+       "result": "{{DEBUG_ONE_VARIABLE}}"  
+   },                                                       
+   {
+       "name":  "DEBUG_PROXY",
+       "type": "single",
+       "url": "/debug/proxy",
+       "method": "POST",
+       "params": "debug:{\"action\":\"DEBUG_PROXY\"}",
+       "query": {"key":"string","url":"string","method":"string"},
+       "result": "{{DEBUG_RESULT}}"  
+   },                                                       
+   {
+       "name":  "SET_ONE_VARIABLE",
+       "type": "single",
+       "url": "/debug/one_variable",
+       "method": "POST",
+       "params": "debug:{\"action\":\"SET_ONE_VARIABLE\"}",
+       "body": {"key":"string","name":"string","value":"string"},
+       "result": "{{DEBUG_ONE_VARIABLE}}"  
+   },                                                       
+   {
+       "name":  "RUN_TOTAL_EXIT",
+       "type": "single",
+       "url": "/debug/total_exit",
+       "method": "GET",
+       "params": "debug:{\"action\":\"EXIT\"}",
+       "query": {"key":"string"},
+       "result": "{{DEBUG_ONE_VARIABLE}}"  
+   },                                                       
