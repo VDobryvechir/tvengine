@@ -46,6 +46,8 @@ allImage: url or  internal parameter
   Title *
   Screens []
   Groups []
+4. Videos
+5. Pictures
 
 
 1. GROUP API
@@ -59,7 +61,7 @@ GET /api/v1/group/{parent id}
       computers: [{id,title,url}],
       allGroups:[{id,title}] 
   }
-POST /api/v1/group/{parent id}
+POST /api/v1/group
   creates a group
   {
       title: "Work"

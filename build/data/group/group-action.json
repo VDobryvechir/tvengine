@@ -6,13 +6,13 @@
    },
    {
        "name":  "GROUP_CREATE",
-       "url": "/api/v1/group/{parent}",
+       "url": "/api/v1/group",
        "method": "POST",
        "result": "{{RESULT}}"  
    },
    {
        "name":  "GROUP_UPDATE",
-       "url": "/api/v1/group/{id}",
+       "url": "/api/v1/group",
        "method": "PUT",
        "result": "{{RESULT}}"  
    },

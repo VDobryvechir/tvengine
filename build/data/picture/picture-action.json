@@ -1,5 +1,5 @@
    {
-       "name":  "PICTURE_READ_ALL",
+       "name":  "PICTURE_READ",
        "url": "/api/v1/picture",
        "method": "GET",
        "result": "{{RESULT}}"  

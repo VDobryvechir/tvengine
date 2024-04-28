@@ -1,5 +1,5 @@
    {
-       "name":  "VIDEO_READ_ALL",
+       "name":  "VIDEO_READ",
        "url": "/api/v1/video",
        "method": "GET",
        "result": "{{RESULT}}"  
