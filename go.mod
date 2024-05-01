@@ -1,6 +1,6 @@
-module netcracker.com/oeconf/server
+module github.com/VDobryvechir/tvengine
 
-go 1.17
+go 1.18
 
 require (
 	github.com/Dobryvechir/microcore v1.0.0
