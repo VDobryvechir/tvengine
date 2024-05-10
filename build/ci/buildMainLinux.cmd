@@ -5,7 +5,7 @@ del %GOPATH%\bin\linux_amd64\main
 call copyAllConfigs.cmd
 SET CGO_ENABLED=0
 SET GOOS=linux
-go install netcracker.com/oeconf/server/pkg/main
+go install github.com/VDobryvechir/tvengine/pkg/main
 @copy %GOPATH%\bin\linux_amd64\main F:\a\nec\order-capture-config\configs\oeconf\oeconf 
 @del %GOPATH%\bin\linux_amd64\main
 

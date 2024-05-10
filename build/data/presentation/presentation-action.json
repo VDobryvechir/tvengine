@@ -5,6 +5,12 @@
        "result": "{{RESULT}}"  
    },
    {
+       "name":  "PRESENTATION_ONE",
+       "url": "/api/v1/presentation/{id}",
+       "method": "GET",
+       "result": "{{RESULT}}"  
+   },
+   {
        "name":  "PRESENTATION_CREATE",
        "url": "/api/v1/presentation",
        "method": "POST",

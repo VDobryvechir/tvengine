@@ -1,6 +1,12 @@
    {
        "name":  "GROUP_ALL",
-       "url": "/api/v1/group/{parent}",
+       "url": "/api/v1/group",
+       "method": "GET",
+       "result": "{{RESULT}}"  
+   },
+   {
+       "name":  "GROUP_ONE",
+       "url": "/api/v1/group/{id}",
        "method": "GET",
        "result": "{{RESULT}}"  
    },

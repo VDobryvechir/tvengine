@@ -1,30 +1,30 @@
    {
-       "name":  "SCREEN_ALL",
-       "url": "/api/v1/screen",
+       "name":  "TASK_ALL",
+       "url": "/api/v1/task",
        "method": "GET",
        "result": "{{RESULT}}"  
    },
    {
-       "name":  "SCREEN_ONE",
-       "url": "/api/v1/screen/{id}",
+       "name":  "TASK_ONE",
+       "url": "/api/v1/task/{id}",
        "method": "GET",
        "result": "{{RESULT}}"  
    },
    {
-       "name":  "SCREEN_CREATE",
-       "url": "/api/v1/screen",
+       "name":  "TASK_CREATE",
+       "url": "/api/v1/task",
        "method": "POST",
        "result": "{{RESULT}}"  
    },
    {
-       "name":  "SCREEN_UPDATE",
-       "url": "/api/v1/screen",
+       "name":  "TASK_UPDATE",
+       "url": "/api/v1/task",
        "method": "PUT",
        "result": "{{RESULT}}"  
    },
    {
-       "name":  "SCREEN_DELETE",
-       "url": "/api/v1/screen/{ids}",
+       "name":  "TASK_DELETE",
+       "url": "/api/v1/task/{id}",
        "method": "DELETE",
        "result": "{{RESULT}}"  
    },
