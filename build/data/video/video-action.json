@@ -13,6 +13,6 @@
    {
        "name":  "VIDEO_DELETE",
        "url": "/api/v1/video/{id}",
-       "method": "POST",
+       "method": "DELETE",
        "result": "{{RESULT}}"  
    },

@@ -2,21 +2,20 @@
 Backend service for TV info 
 
 1. Computer and Groups 
-Computer are united into groups. There is a root group, which includes all groups and computers.
-Groups can consist of computers and other groups
+Computer are united into groups. There is a default group (All pcs), which includes all computers.
+Groups can consist of computers
 Each computer has parameters
-  id key parameter
-  title *
+  id (key parameter)
+  name *
   url * 
 Each group has parameters
-  id key parameter
-  title *
-  computers []
-  subgroups []
+  id (key parameter)
+  name *
+  tvpc []
 2. Screens
 Each screen has parameters as follows
 id key parameter
-Title * 
+name * 
 text:
 1 message 
   message
@@ -28,7 +27,7 @@ text:
   size *
 Image
   id
-  title
+  name
   url 
   height in %  *
 Background
@@ -36,30 +35,30 @@ Background
   image url
 Video
   id
-  title
+  name
   url *
 Duration is seconds *
 allImage: url or  internal parameter
 
 3. Presentation
   id key parameter
-  Title *
-  Screens []
-  Groups []
+  name *
+  screens []
+  groups []
 4. Videos
 5. Pictures
 
 
 1. GROUP API
-GET /api/v1/group/{parent id}
-  id=0 the ALL group
+GET /api/v1/group
+   retrieve all groups
+GET /api/v1/group/{id}
+  retrieve one group
   retrieves information about a group
   {
       id: 0,
       title: "All"
-      groups: [{id, title}],
       computers: [{id,title,url}],
-      allGroups:[{id,title}] 
   }
 POST /api/v1/group
   creates a group
@@ -110,7 +109,6 @@ GET /api/v1/screen
    backgroundColor: #675645,
    backgroundImage: url,
    video: {id, title, url},
-   duration: 10,
    allImage: url   
 }]
 POST /api/v1/screen
@@ -122,7 +120,6 @@ creates a new screen
    backgroundColor: #675645,
    backgroundImage: url,
    video: {id, title, url},
-   duration: 10,
    allImage: url    
 }                                            
 PUT /api/v1/screen
@@ -135,7 +132,6 @@ updates an existing screen
    backgroundColor: #675645,
    backgroundImage: url,
    video: {id, title, url},
-   duration: 10,
    allImage: url   
 }
 DELETE /api/v1/screen/{id}
@@ -145,7 +141,7 @@ GET /api/v1/presentation
   get a list of all presentations
 [{
     id:0
-    title: "",
+    name: "",
     groups: [{id,title}],
     screens: [{id,title,allImage,video,duration}], 
 }
