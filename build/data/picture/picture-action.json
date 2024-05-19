@@ -8,7 +8,22 @@
        "name":  "PICTURE_UPLOAD",
        "url": "/api/v1/picture",
        "method": "POST",
-       "result": "{{RESULT}}"  
+       "result": "{{RESULT}}",
+       "body" : {
+           "name": "string",
+           "file": "file"
+       }  
+   },
+   {
+       "name":  "PICTURE_UPDATE",
+       "url": "/api/v1/picture",
+       "method": "PUT",
+       "result": "{{RESULT}}",
+       "body" : {
+           "id": "number",
+           "name": "string",
+           "file": "file"
+       }  
    },
    {
        "name":  "PICTURE_DELETE",

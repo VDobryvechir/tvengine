@@ -11,6 +11,12 @@
        "result": "{{RESULT}}"  
    },
    {
+       "name":  "VIDEO_UPDATE",
+       "url": "/api/v1/video",
+       "method": "PUT",
+       "result": "{{RESULT}}"  
+   },
+   {
        "name":  "VIDEO_DELETE",
        "url": "/api/v1/video/{id}",
        "method": "DELETE",
