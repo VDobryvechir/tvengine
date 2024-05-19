@@ -5,6 +5,12 @@
        "result": "{{RESULT}}"  
    },
    {
+       "name":  "PICTURE_ONE",
+       "url": "/api/v1/picture/{id}",
+       "method": "GET",
+       "result": "{{RESULT}}"  
+   },
+   {
        "name":  "PICTURE_UPLOAD",
        "url": "/api/v1/picture",
        "method": "POST",

@@ -5,6 +5,12 @@
        "result": "{{RESULT}}"  
    },
    {
+       "name":  "VIDEO_ONE",
+       "url": "/api/v1/video/{id}",
+       "method": "GET",
+       "result": "{{RESULT}}"  
+   },
+   {
        "name":  "VIDEO_UPLOAD",
        "url": "/api/v1/video",
        "method": "POST",
