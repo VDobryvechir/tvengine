@@ -2,13 +2,13 @@
        "name":  "GROUP_ALL",
        "url": "/api/v1/group",
        "method": "GET",
-       "result": "{{RESULT}}"  
+       "result": "{\"pool\":{{RESULT}},\"tvpc\":{{RESULT_TV}} }"  
    },
    {
        "name":  "GROUP_ONE",
        "url": "/api/v1/group/{id}",
        "method": "GET",
-       "result": "{{RESULT}}"  
+       "result": "{\"pool\":{{RESULT}},\"tvpc\":{{RESULT_TV}} }"  
    },
    {
        "name":  "GROUP_CREATE",
