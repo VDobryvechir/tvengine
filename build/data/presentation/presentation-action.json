@@ -2,13 +2,19 @@
        "name":  "PRESENTATION_ALL",
        "url": "/api/v1/presentation",
        "method": "GET",
-       "result": "{{RESULT}}"  
+       "result": "{\"pool\":{{RESULT}},\"screen\":{{RESULT_SCR}},\"group\":{{RESULT_GRP}} }"  
    },
    {
        "name":  "PRESENTATION_ONE",
        "url": "/api/v1/presentation/{id}",
        "method": "GET",
-       "result": "{{RESULT}}"  
+       "result": "{\"pool\":{{RESULT}},\"screen\":{{RESULT_SCR}},\"group\":{{RESULT_GRP}} }"  
+   },
+   {
+       "name":  "PRESENTATION_NEW",
+       "url": "/api/v1/presentation-new",
+       "method": "GET",
+       "result": "{\"screen\":{{RESULT_SCR}},\"group\":{{RESULT_GRP}} }"  
    },
    {
        "name":  "PRESENTATION_CREATE",

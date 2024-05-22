@@ -8,7 +8,13 @@
        "name":  "SCREEN_ONE",
        "url": "/api/v1/screen/{id}",
        "method": "GET",
-       "result": "{{RESULT}}"  
+       "result": "{\"pool\": {{RESULT}},\"video\": {{RESULT_V}},\"picture\": {{RESULT_P}} }"  
+   },
+   {
+       "name":  "SCREEN_NEW",
+       "url": "/api/v1/screen-new",
+       "method": "GET",
+       "result": "{\"video\": {{RESULT_V}},\"picture\": {{RESULT_P}} }"  
    },
    {
        "name":  "SCREEN_CREATE",
