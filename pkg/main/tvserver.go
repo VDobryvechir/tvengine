@@ -3,8 +3,9 @@
 package main
 
 import (
-	"github.com/Dobryvechir/microcore/pkg/dvconfig"
 	_ "github.com/Dobryvechir/microcore/pkg/dvoc"
+    _ "github.com/VDobryvechir/tvengine/pkg/tvcontrol"
+	"github.com/Dobryvechir/microcore/pkg/dvconfig"
 )
 
 func main() {

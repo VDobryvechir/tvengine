@@ -1,6 +1,6 @@
-   {
-       "name":  "CONTROL_ON",
-       "url": "/api/v1/control/{id}",
-       "method": "GET",
-       "result": "{{RESULT}}"  
-   },
+{
+  "name": "CONTROL_ON",
+  "url": "/api/v1/control/{id}",
+  "method": "GET",
+  "result": "{\"presentation\": {{RESULT}},\"tv\":{{RESULT_TV}} }"
+},
