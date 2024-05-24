@@ -10,6 +10,12 @@ type TvConfig struct {
 	Duration []int `json:"duration"`
 }
 
+type TvScreen struct {
+	FileReal string `json:"file"`
+	FileName string `json:"fileName"`
+	Id       string `json:"id"`
+}
+
 type TvTask struct {
 	Id  string `json:"id"`,
 	Name string `json:"name"`
