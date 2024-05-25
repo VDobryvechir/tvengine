@@ -34,6 +34,21 @@ const taskFieldsForConfigSending = [
 	"Name,NewPresentationName",
 	"Name,NewPresentationId,NewPresentationName,NewPresentationVersion,Config,RealFiles,LeftFiles,TaskStatus",
 ]
+
+const taskFieldsForFileSending = [
+	"!OldPresentationId,OldPresentationName,OldPresentationVersion",
+	"Name,NewPresentationName",
+	"^OldPresentationId,OldPresentationName,OldPresentationVersion,ConnectionStatus",
+]
+
+const taskConditionsForConnectionCheck = [
+	"DEFAULT"
+]
+// all fields except ConnectionStatus must be here
+const taskFieldsForConnectionCheck = [
+	"^ConnectionStatus",
+]
+
 func createOrUpdateTaskDatabaseForWeb(tasks []*TvTask) (res []*dvevaluation.DvVariable,err error) {
 	n:=len(tasks)
 	res = make([]*dvevaluation.DvVariable, n)
@@ -64,6 +79,10 @@ func getCoincidenceConditions(task *TvTask) []string {
 }
 
 func createOrUpdateTaskDatabaseForConfigSending(task *TvTask) (task *TvTask, error) {
+	rowTask, err := dvevaluation.AnyStructToDvVariable(task)
+    if err!=nil {
+		return nil, err
+	}
 	task.OldPresentationId = task.NewPresentationId
 	task.OldPresentationName = task.NewPresentationName
 	task.OldPresentationVersion = task.NewPresentationVersion
@@ -80,3 +99,39 @@ func createOrUpdateTaskDatabaseForConfigSending(task *TvTask) (task *TvTask, err
 	return tsk, err
 }
 
+// it is assumed that the only changed fiedls are LeftFiles and TaskStatus, possibly also ConnectionStatus
+func createOrUpdateTaskDatabaseForFileSending(task *TvTask) (task *TvTask, error) {
+	rowTask, err := dvevaluation.AnyStructToDvVariable(task)
+    if err!=nil {
+		return nil, err
+	}
+	taskConditions:=getCoincidenceConditions(task)
+	res, err:= dvdbmanager.CreateOrUpdateByConditionsAndUpdateFields(taskDbName, rowTask, taskConditions, taskFieldsForConfigSending)
+	if err!=nil {
+		return nil, err
+	}
+	if res==nil {
+		return nil, nil
+	}
+	tsk:=&TvTask{}
+	err=res.DvVariableToAnyStruct(tsk)
+	return tsk, err
+}
+
+// it is assumed that the only changed fiedls is ConnectionStatus
+func createOrUpdateTaskDatabaseForConnectionStatus(task *TvTask) (task *TvTask, error) {
+	rowTask, err := dvevaluation.AnyStructToDvVariable(task)
+    if err!=nil {
+		return nil, err
+	}
+	res, err:= dvdbmanager.CreateOrUpdateByConditionsAndUpdateFields(taskDbName, rowTask, taskConditionsForConnectionCheck, taskFieldsForConnectionCheck)
+	if err!=nil {
+		return nil, err
+	}
+	if res==nil {
+		return nil, nil
+	}
+	tsk:=&TvTask{}
+	err=res.DvVariableToAnyStruct(tsk)
+	return tsk, err
+}
