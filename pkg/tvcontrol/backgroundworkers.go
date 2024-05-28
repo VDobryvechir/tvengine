@@ -142,7 +142,7 @@ func (task *TaskWorker) RunConfigSending() error {
 }
 
 func (task *TaskWorker) RunFileSending() error {
-	fileUrl, body, hint, err := analyzeComputerFileSendingRequest()
+	fileUrl, body, hint, err := analyzeComputerFileSendingRequest(task.Task)
 	if err != nil {
 		return err
 	}
@@ -176,7 +176,7 @@ func (task *TaskWorker) RunFileSending() error {
 	return err
 }
 
-}
+
 
 func (task *TaskWorker) GetComputerUrl() string {
 	s := task.Task.Url
