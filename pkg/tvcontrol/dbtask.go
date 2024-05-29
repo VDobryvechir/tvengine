@@ -14,29 +14,29 @@ const taskDbName = "task"
 
 var taskConditionsForWeb = []string{
 	"NEW",
-	"previous.NewPresentationVersion == current.NewPresentationVersion && previous.Url == current.Url && previous.NewPresentationId == current.NewPresentationId",
+	"previous.newPresentationVersion == current.newPresentationVersion && previous.url == current.url && previous.newPresentationId == current.newPresentationId",
 	"DEFAULT",
 }
 
 var taskFieldsForWeb = []string{
 	"",
-	"OldPresentationId,OldPresentationName,OldPresentationVersion,LeftFiles,TaskStatus,ConnectionStatus",
-	"OldPresentationId,OldPresentationName,OldPresentationVersion,ConnectionStatus",
+	"oldPresentationId,oldPresentationName,oldPresentationVersion,leftFiles,taskStatus,connectionStatus",
+	"oldPresentationId,oldPresentationName,oldPresentationVersion,connectionStatus",
 }
 
-const taskConditionsForConfigSendingPart1 = "current.NewPresentationVersion=="
-const taskConditionsForConfigSendingPart2 = " && current.NewPresentationId=="
+const taskConditionsForConfigSendingPart1 = "current.newPresentationVersion=="
+const taskConditionsForConfigSendingPart2 = " && current.newPresentationId=="
 
 var taskFieldsForConfigSending = []string{
-	"!OldPresentationId,OldPresentationName,OldPresentationVersion",
-	"Name,NewPresentationName",
-	"Name,NewPresentationId,NewPresentationName,NewPresentationVersion,Config,RealFiles,LeftFiles,TaskStatus",
+	"!oldPresentationId,oldPresentationName,oldPresentationVersion",
+	"name,newPresentationName",
+	"name,newPresentationId,newPresentationName,newPresentationVersion,config,realFiles,leftFiles,taskStatus",
 }
 
 var taskFieldsForFileSending = []string{
-	"!OldPresentationId,OldPresentationName,OldPresentationVersion",
-	"Name,NewPresentationName",
-	"^OldPresentationId,OldPresentationName,OldPresentationVersion,ConnectionStatus",
+	"!oldPresentationId,oldPresentationName,oldPresentationVersion",
+	"name,newPresentationName",
+	"^oldPresentationId,oldPresentationName,oldPresentationVersion,connectionStatus",
 }
 
 var taskConditionsForConnectionCheck = []string{
@@ -45,7 +45,7 @@ var taskConditionsForConnectionCheck = []string{
 
 // all fields except ConnectionStatus must be here
 var taskFieldsForConnectionCheck = []string{
-	"^ConnectionStatus",
+	"^connectionStatus",
 }
 
 func createOrUpdateTaskDatabaseForWeb(tasks []*TvTask) (res []*dvevaluation.DvVariable, err error) {
@@ -70,21 +70,21 @@ func createOrUpdateTaskDatabase(task *TvTask, taskConditions []string, taskField
 }
 
 func getCoincidenceInTask(task *TvTask) string {
-	return taskConditionsForConfigSendingPart1 + task.NewPresentationVersion + taskConditionsForConfigSendingPart2 + task.NewPresentationVersion
+	return taskConditionsForConfigSendingPart1 + task.NewPresentationVersion + taskConditionsForConfigSendingPart2 + task.NewPresentationId
 }
 
 func getCoincidenceConditions(task *TvTask) []string {
-	return []string{"current.Url != previous.Url", getCoincidenceInTask(task), "DEFAULT"}
+	return []string{"current.url != previous.url", getCoincidenceInTask(task), "DEFAULT"}
 }
 
 func createOrUpdateTaskDatabaseForConfigSending(task *TvTask) (*TvTask, error) {
+	task.OldPresentationId = task.NewPresentationId
+	task.OldPresentationName = task.NewPresentationName
+	task.OldPresentationVersion = task.NewPresentationVersion
 	rowTask, err := dvevaluation.AnyStructToDvVariable(task)
 	if err != nil {
 		return nil, err
 	}
-	task.OldPresentationId = task.NewPresentationId
-	task.OldPresentationName = task.NewPresentationName
-	task.OldPresentationVersion = task.NewPresentationVersion
 	taskConditions := getCoincidenceConditions(task)
 	res, err := dvdbmanager.CreateOrUpdateByConditionsAndUpdateFields(taskDbName, rowTask, taskConditions, taskFieldsForConfigSending)
 	if err != nil {

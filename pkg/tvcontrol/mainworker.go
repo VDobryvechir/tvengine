@@ -32,6 +32,10 @@ func wakeUpMainWorker() error {
 }
 
 func RunMainWorker() {
+    go runMainWorkerThread()
+}
+
+func runMainWorkerThread() {
 	time.Sleep(5 * time.Second)
 	for {
 		res, err := dvdbmanager.RecordReadAll(taskDbName)

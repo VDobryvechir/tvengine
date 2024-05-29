@@ -7,7 +7,7 @@ package tvcontrol
 
 var delayInErrorCase = 30
 var delayInIdleCase = 60
-var delayInOperationCase = 0
+var delayInOperationCase = 5
 
 func GetDelayInErrorCase() int {
 	return delayInErrorCase

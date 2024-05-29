@@ -97,7 +97,7 @@ func (task *TaskWorker) RunNextTask() (bool, error) {
 
 func (task *TaskWorker) RunCheckConnection() error {
 	t := task.Task
-	s, err := task.SendToComputer("info", "", "GET")
+	s, err := task.SendToComputer("status", "", "GET")
 	if err != nil {
 		task.saveWrongConnectionStatus(t)
 		return err

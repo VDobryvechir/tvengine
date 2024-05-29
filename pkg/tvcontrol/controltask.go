@@ -53,7 +53,7 @@ func tvControlRunByConfig(config *TvControlConfig, ctx *dvcontext.RequestContext
 		return true
 	}
 	tv := dvevaluation.AnyToDvVariable(tvData)
-	if tv == nil || tv.Kind != dvevaluation.FIELD_OBJECT || len(tv.Fields) == 0 {
+	if tv == nil || tv.Kind != dvevaluation.FIELD_ARRAY || len(tv.Fields) == 0 {
 		dvlog.PrintlnError("tv data is empty")
 		return true
 	}

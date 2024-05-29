@@ -28,19 +28,27 @@ const fileSendMethod = "POST"
 
 func getLeftFiles(r string) ([]string, error) {
 	res := make(map[string]int, 10)
-	err := json.Unmarshal([]byte(r), res)
+	err := json.Unmarshal([]byte(r), &res)
 	if err != nil {
 		return nil, err
 	}
 	d := make([]string, 0, 16)
 	for k, v := range res {
-		s := k
+		s := getFileNameWithoutPath(k)
 		if v != 0 {
 			s += ":" + strconv.Itoa(v)
 		}
 		d = append(d, s)
 	}
 	return d, nil
+}
+
+func getFileNameWithoutPath(s string) string {
+	pos:=strings.Index(s,"/")
+        if pos>=0 {
+            s = s[pos+1:]   
+        }
+        return s
 }
 
 func analyzeComputerConfigSendingResponse(r string, t *TvTask) error {
@@ -103,6 +111,10 @@ func getFullSeek(s string) int {
 	pos = strings.LastIndex(s, "-")
 	if pos > 0 {
 		t := s[pos+1:]
+		pos = strings.Index(t, ".")
+		if pos > 0 {
+			t = t[:pos]
+		}
 		n, err := strconv.Atoi(t)
 		if err != nil {
 			dvlog.PrintlnError("strange file size at " + s + " " + err.Error())
@@ -123,12 +135,14 @@ func changeSeek(s string, newSeek int) string {
 }
 
 func analyzeComputerFileSendingRequest(t *TvTask) (url string, body string, hint string, err error) {
-	n := len(t.LeftFiles)
-	for n > 0 {
+	for len(t.LeftFiles) > 0 {
 		p := t.LeftFiles[0]
 		current := getCurrentSeek(p)
 		total := getFullSeek(p)
 		if current >= total {
+                        if logLevel {
+                           dvlog.PrintfError("Left files removed %s because current %d reached size %d", p, current, total)
+                        }
 			t.LeftFiles = t.LeftFiles[1:]
 			continue
 		}
@@ -138,13 +152,19 @@ func analyzeComputerFileSendingRequest(t *TvTask) (url string, body string, hint
 			hint = changeSeek(t.LeftFiles[0], current+dif)
 		}
 		index, name, err2 := detectRealFileName(t, t.LeftFiles[0])
+                if logLevel {
+                     dvlog.PrintfError("Hint %s index %d name %s err %v", hint, index, name, err2)
+                }
 		if err2 != nil {
 			dvlog.PrintError(err2)
 			t.LeftFiles = t.LeftFiles[1:]
 			continue
 		}
-		url = fileSendUrl + strconv.Itoa(index) + "_" + strconv.Itoa(current)
 		data, err1 := readFileWithSeek(name, current, dif)
+		url = fileSendUrl + strconv.Itoa(index) + "_" + strconv.Itoa(current) + "_" + strconv.Itoa(len(data))
+                if logLevel {
+                     dvlog.PrintfError("Seek %s url %s data-len %d err %v", name , url, len(data), err1)
+                }
 		if err1 != nil {
 			err = err1
 			return
