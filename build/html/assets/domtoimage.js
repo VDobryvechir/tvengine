@@ -344,7 +344,6 @@
                     foreignObject + '</svg>';
             })
             .then(function (svg) {
-                console.log("svg=", svg);
                 return 'data:image/svg+xml;charset=utf-8,' + svg;
             });
     }
