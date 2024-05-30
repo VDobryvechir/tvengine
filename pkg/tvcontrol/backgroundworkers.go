@@ -103,7 +103,7 @@ func (task *TaskWorker) RunCheckConnection() error {
 		return err
 	}
 	if logLevel {
-		dvlog.PrintfFullOnly("Connection info %s", s)
+		dvlog.PrintfFullOnly("Connection %s %s", t.Url, s)
 	}
 	if t.ConnectionStatus != 0 {
 		t.ConnectionStatus = 0
@@ -137,6 +137,10 @@ func (task *TaskWorker) RunConfigSending() error {
 	}
 	t.ConnectionStatus = 0
 	t.TaskStatus = 1
+        if len(t.LeftFiles)==0 {
+            t.LeftFiles = nil
+            t.TaskStatus = 1000
+        }
 	err = task.saveConfigSending(t)
 	return err
 }
