@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>WebGL Demo</title>
+    <script src="/assets/glmatrix.js"></script>
+    <script src="/test/initbuffers.js"></script>
+    <script src="/test/webgl.js"></script>
+  </head>
+
+  <body>
+    <canvas id="glcanvas" width="320" height="180"></canvas>
+<div>
+Number of files: <input type="number" id="fileAmount" value="1" />
+<button onclick="onStart()">Start</button>
+</div>
+<div id="info"></div>
+<style>
+  #info {
+     padding: 5px;
+     border: 1px solid #ccc;
+     background-color: blue;
+     color: yellow;
+      	
+  }
+</style>
+<script>
+const filesAll=["/video/402966.mp4","/video/571982.mp4","/picture/571989.jpg","/screen/704577.png","/screen/584045.png"];
+const durationsAll = [10, 1005, 2003, 20, 19];
+function onStart() {
+    const canvas=document.getElementById("glcanvas");
+    const nmb = parseInt(document.getElementById("fileAmount").value);
+    if (nmb<1) {
+        nmb = 1;
+    } else if (nmb>durationsAll.length) {
+        nmb = durationsAll.length;
+    }
+    const files = filesAll.slice(0, nmb);
+    const info = nmb + " files";	
+    document.getElementById("info").innerHTML = info;
+    durations = durationsAll.slice(0, nmb);
+    presentPictureVideosAndDuration(files, durations, canvas);
+    console.log("started ", files, durations, canvas);	    	 
+}
+</script>
+
+  </body>
+</html>
+
+
+
