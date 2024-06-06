@@ -1,5 +1,6 @@
 build/html/video
 build/html/picture
+build/html/screen
 build/db
 .vs/*
 .vscode/*
