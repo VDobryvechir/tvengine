@@ -1,7 +1,7 @@
 module github.com/VDobryvechir/tvengine
 
-go 1.21
+go 1.21.3
 
-require (
-	github.com/Dobryvechir/microcore v2.0.0
-)
+toolchain go1.22.3
+
+require github.com/Dobryvechir/microcore v1.0.2
