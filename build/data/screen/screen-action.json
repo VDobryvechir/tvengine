@@ -32,5 +32,5 @@
        "name":  "SCREEN_DELETE",
        "url": "/api/v1/screen/{ids}",
        "method": "DELETE",
-       "result": "{{RESULT}}"  
+       "result": "{\"result\": {{RESULT}} }"  
    },
