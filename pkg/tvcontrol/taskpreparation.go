@@ -171,7 +171,7 @@ func fixFileName(name string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	resPref, err := getFileNamePrefix(name)
+	resPref, err := getFileNamePrefix(resExt)
 	if err != nil {
 		return "", err
 	}
@@ -200,4 +200,3 @@ func createTvTasks(sample *TvTask, tvs []*dvevaluation.DvVariable) ([]*TvTask, e
 	}
 	return res, nil
 }
-

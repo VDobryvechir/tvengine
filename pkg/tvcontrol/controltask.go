@@ -6,6 +6,8 @@ Copyright 2024 by Volodymyr Dobryvechir (vdobryvechir@gmail.com)
 package tvcontrol
 
 import (
+	"errors"
+
 	"github.com/Dobryvechir/microcore/pkg/dvaction"
 	"github.com/Dobryvechir/microcore/pkg/dvcontext"
 	_ "github.com/Dobryvechir/microcore/pkg/dvdbmanager"
@@ -33,54 +35,54 @@ func TvControlRun(data []interface{}) bool {
 	if data[1] != nil {
 		ctx = data[1].(*dvcontext.RequestContext)
 	}
-	return tvControlRunByConfig(config, ctx)
+	err := tvControlRunByConfig(config, ctx)
+	if err != nil {
+		mes := err.Error()
+		dvlog.PrintlnError(mes)
+		resError := &dvevaluation.DvVariable{Kind: dvevaluation.FIELD_STRING, Name: []byte("error"), Value: []byte(mes)}
+		res := &dvevaluation.DvVariable{Kind: dvevaluation.FIELD_OBJECT, Fields: []*dvevaluation.DvVariable{resError}}
+		dvaction.SaveActionResult(config.Result, res, ctx)
+	}
+	return true
 }
 
-func tvControlRunByConfig(config *TvControlConfig, ctx *dvcontext.RequestContext) bool {
+func tvControlRunByConfig(config *TvControlConfig, ctx *dvcontext.RequestContext) error {
 	presentationData, ok := dvaction.ReadActionResult(config.Presentation, ctx)
 	if !ok {
-		dvlog.PrintlnError("Presentation is absent")
-		return true
+		return errors.New("system error in reading the presentation")
 	}
 	presentation := dvevaluation.AnyToDvVariable(presentationData)
 	if presentation == nil || presentation.Kind != dvevaluation.FIELD_OBJECT || len(presentation.Fields) == 0 {
-		dvlog.PrintlnError("Presentation is empty")
-		return true
+		return errors.New("cannot send empty presentation")
 	}
 	tvData, ok := dvaction.ReadActionResult(config.Tv, ctx)
 	if !ok {
-		dvlog.PrintlnError("tv data is absent")
-		return true
+		return errors.New("system error in reading tv data")
 	}
 	tv := dvevaluation.AnyToDvVariable(tvData)
 	if tv == nil || tv.Kind != dvevaluation.FIELD_ARRAY || len(tv.Fields) == 0 {
-		dvlog.PrintlnError("tv data is empty")
-		return true
+		return errors.New("there is no tv pc is current group")
 	}
 	n := len(tv.Fields)
 	res := &dvevaluation.DvVariable{Kind: dvevaluation.FIELD_ARRAY, Fields: make([]*dvevaluation.DvVariable, 0, n)}
 	sample, err := prepareSampleTask(presentation)
 	if err != nil {
-		dvlog.PrintError(err)
-		return true
+		return err
 	}
 	tasks, err := createTvTasks(sample, tv.Fields)
 	if err != nil {
-		dvlog.PrintError(err)
-		return true
+		return err
 	}
 	res.Fields, err = createOrUpdateTaskDatabaseForWeb(tasks)
 	if err != nil {
-		dvlog.PrintError(err)
-		return true
+		return err
 	}
 	err = wakeUpMainWorker()
 	if err != nil {
-		dvlog.PrintError(err)
-		return true
+		return err
 	}
 	dvaction.SaveActionResult(config.Result, res, ctx)
-	return true
+	return nil
 }
 
 const (
