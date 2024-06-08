@@ -105,7 +105,7 @@ func createOrUpdateTaskDatabaseForFileSending(task *TvTask) (*TvTask, error) {
 		return nil, err
 	}
 	taskConditions := getCoincidenceConditions(task)
-	res, err := dvdbmanager.CreateOrUpdateByConditionsAndUpdateFields(taskDbName, rowTask, taskConditions, taskFieldsForConfigSending)
+	res, err := dvdbmanager.CreateOrUpdateByConditionsAndUpdateFields(taskDbName, rowTask, taskConditions, taskFieldsForFileSending)
 	if err != nil {
 		return nil, err
 	}

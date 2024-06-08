@@ -32,7 +32,7 @@ func (task *TaskWorker) RunBackground() {
 		dvlog.PrintError(err)
 		return
 	}
-	delay := GetDelayInIdleCase()
+	var delay int
 	for {
 		res, err := task.RunNextTask()
 		if err != nil {
@@ -116,7 +116,7 @@ func (task *TaskWorker) RunCheckConnection() error {
 func (task *TaskWorker) RunConfigSending() error {
 	config := task.Task.Config
 	if config == nil {
-		return errors.New("No config in task")
+		return errors.New("no config in task")
 	}
 	body, err := json.Marshal(config)
 	if err != nil {
@@ -130,17 +130,17 @@ func (task *TaskWorker) RunConfigSending() error {
 	if logLevel {
 		dvlog.Print("received from config " + task.Task.Id + " : " + res)
 	}
-	t:=task.Task
+	t := task.Task
 	err = analyzeComputerConfigSendingResponse(res, t)
-	if err!=nil {
+	if err != nil {
 		return err
 	}
 	t.ConnectionStatus = 0
 	t.TaskStatus = 1
-        if len(t.LeftFiles)==0 {
-            t.LeftFiles = nil
-            t.TaskStatus = 1000
-        }
+	if len(t.LeftFiles) == 0 {
+		t.LeftFiles = nil
+		t.TaskStatus = 1000
+	}
 	err = task.saveConfigSending(t)
 	return err
 }
@@ -150,12 +150,12 @@ func (task *TaskWorker) RunFileSending() error {
 	if err != nil {
 		return err
 	}
-	if len(body)==0 {
-		t:=task.Task
+	if len(body) == 0 {
+		t := task.Task
 		t.LeftFiles = nil
 		t.ConnectionStatus = 0
 		t.TaskStatus = 1000
-		err = task.saveFileSending(t) 
+		err = task.saveFileSending(t)
 		return err
 	}
 	res, err := task.SendToComputer(fileUrl, string(body), fileSendMethod)
@@ -166,21 +166,19 @@ func (task *TaskWorker) RunFileSending() error {
 	if logLevel {
 		dvlog.Print("received from file sending " + task.Task.Id + " : " + res)
 	}
-	t:=task.Task
+	t := task.Task
 	err = analyzeComputerFileSendingResponse(res, hint, t)
-	if err!=nil {
+	if err != nil {
 		return err
 	}
-	if len(t.LeftFiles)==0 {
-		t.LeftFiles = nil 
+	if len(t.LeftFiles) == 0 {
+		t.LeftFiles = nil
 		t.TaskStatus = 1000
 	}
 	t.ConnectionStatus = 0
 	err = task.saveFileSending(t)
 	return err
 }
-
-
 
 func (task *TaskWorker) GetComputerUrl() string {
 	s := task.Task.Url
