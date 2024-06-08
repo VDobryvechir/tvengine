@@ -5,6 +5,12 @@ github.com/Dobryvechir/microcore v1.0.0 h1:jZ96yEG42IY4MuiW0akUgdfkduhAYSpkFS/MP
 github.com/Dobryvechir/microcore v1.0.0/go.mod h1:NvRPrkxJ6iyd2SKbWb+Ajt18YGm4NPv6jdQn/YgfLKo=
 github.com/Dobryvechir/microcore v1.0.2 h1:Ei/jDMTQ+9jx71KIlu7uBrdsMB5+KODJ6BpMxMKXLDg=
 github.com/Dobryvechir/microcore v1.0.2/go.mod h1:37PoovTWuYIgPeBayZBE/LoQ8xcGSY0rze/9LSHZr+g=
+github.com/Dobryvechir/microcore v1.0.3 h1:3LJk8eRAJ3uSjrAXBkzZfroswVtqeLF+S/GZIKZkkIY=
+github.com/Dobryvechir/microcore v1.0.3/go.mod h1:37PoovTWuYIgPeBayZBE/LoQ8xcGSY0rze/9LSHZr+g=
+github.com/Dobryvechir/microcore v1.0.4 h1:1Cv+SqWcSXpdV9cMAqE/OciDTxKEzAQliqKtSZ1eNDM=
+github.com/Dobryvechir/microcore v1.0.4/go.mod h1:37PoovTWuYIgPeBayZBE/LoQ8xcGSY0rze/9LSHZr+g=
+github.com/Dobryvechir/microcore v1.0.5 h1:T7xDAaUqg7byu1fFjTBCIvCDVIxRPmOY3EPnC+EWJUE=
+github.com/Dobryvechir/microcore v1.0.5/go.mod h1:37PoovTWuYIgPeBayZBE/LoQ8xcGSY0rze/9LSHZr+g=
 github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible/go.mod h1:r7JcOSlj0wfOMncg0iLm8Leh48TZaKVeNIfJntJ2wa0=
 github.com/Shopify/sarama v1.19.0/go.mod h1:FVkBWblsNy7DGZRfXLU0O9RCGt5g3g3yEuWXgklEdEo=
 github.com/Shopify/toxiproxy v2.1.4+incompatible/go.mod h1:OXgGpZ6Cli1/URJOF1DMxUHB2q5Ap20/P/eIdh4G0pI=

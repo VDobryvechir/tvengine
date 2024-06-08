@@ -4,4 +4,4 @@ go 1.21.3
 
 toolchain go1.22.3
 
-require github.com/Dobryvechir/microcore v1.0.2
+require github.com/Dobryvechir/microcore v1.0.5
